@@ -1,0 +1,2 @@
+module CobasHelper
+end
