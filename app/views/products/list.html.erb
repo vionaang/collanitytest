@@ -16,7 +16,9 @@
 </head>
 <body>
 <h3> List of Products</h3> 
-<table class="table">
+
+  <% if @products.try(:any?) %>
+  <table class="table">
   <thead>
     <tr>
       <th scope="col">Product</th>
@@ -25,7 +27,7 @@
     </tr>
   </thead>
   <tbody>
-  <% @products.each do |product| %>
+    <% @products.each do |product| %>
     <tr>
       <th scope="row"><%= product.product_name %></th>
       <td><a href="/detail/<%= product.id %>" class="btn btn-primary">Show</a></td>
@@ -33,11 +35,14 @@
       <%= token_tag %>
       <td><input type="submit" class="btn btn-danger" style="color:white" value="Delete"></td>
       </form>
-    
     </tr>
-  <% end %>
-  </tbody>
+    <% end %>
+    </tbody>
 </table>
+  <% else %>
+  <p style="color:grey">There's no data in the list</p>
+  <% end %>
+  
 <h3> Click here to <a href="/new">Add Product</a></h3> 
 </body>
 </html>

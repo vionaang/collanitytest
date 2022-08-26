@@ -12,11 +12,22 @@
     body{
         margin: 20px;
     }
+    ul{
+        color : red;
+    }
 </style>
 </head>
 <body>
+<% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |msg| %>
+     <p style="color: red;"><%= msg %>
+    <% end %>
+<% end %>
+<% if @message %>
+    <p style="color: red;"><%= @message %>
+<% end %>
 <form method="POST" action="/addprod">
-<h3> UPC Code <input name="upc_code" id="upc_code" type="text" > </h3> 
+<h3> UPC Code <input name="upc_code" id="upc_code" type="number" > </h3> 
 <%= token_tag %>
 <input type="submit" class="btn btn-primary" value="Submit"> or <button type="button" href="/list" class="btn btn-primary" id="cancel">Cancel</button>
 </form> 
